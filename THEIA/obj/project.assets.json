@@ -114,6 +114,22 @@
           }
         }
       },
+      "ManagedBass.Mix/4.0.2": {
+        "type": "package",
+        "dependencies": {
+          "ManagedBass": "4.0.2"
+        },
+        "compile": {
+          "lib/net8.0/ManagedBass.Mix.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/ManagedBass.Mix.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/10.0.2": {
         "type": "package",
         "compile": {
@@ -699,25 +715,6 @@
           "lib/netstandard2.0/NAudio.Core.dll": {
             "related": ".xml"
           }
-        }
-      },
-      "NAudio.Lame/2.1.0": {
-        "type": "package",
-        "dependencies": {
-          "NAudio.Core": "2.1.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/NAudio.Lame.dll": {
-            "related": ".pdb"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/NAudio.Lame.dll": {
-            "related": ".pdb"
-          }
-        },
-        "build": {
-          "build/NAudio.Lame.targets": {}
         }
       },
       "NAudio.Midi/2.2.1": {
@@ -1518,6 +1515,25 @@
         "lib/netstandard2.0/ManagedBass.Flac.xml",
         "managedbass.flac.4.0.2.nupkg.sha512",
         "managedbass.flac.nuspec"
+      ]
+    },
+    "ManagedBass.Mix/4.0.2": {
+      "sha512": "LKhcTeFRFKKNntpCTrmYWBUeU3kyv/h6Z0iu3OxavnV0wkBmSXp2kyQKk9NLNO7oNMbwP1uNr5CKYYdY3vtfyw==",
+      "type": "package",
+      "path": "managedbass.mix/4.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "icon.png",
+        "lib/net45/ManagedBass.Mix.dll",
+        "lib/net45/ManagedBass.Mix.xml",
+        "lib/net8.0/ManagedBass.Mix.dll",
+        "lib/net8.0/ManagedBass.Mix.xml",
+        "lib/netstandard2.0/ManagedBass.Mix.dll",
+        "lib/netstandard2.0/ManagedBass.Mix.xml",
+        "managedbass.mix.4.0.2.nupkg.sha512",
+        "managedbass.mix.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/10.0.2": {
@@ -2507,23 +2523,6 @@
         "naudio.core.nuspec"
       ]
     },
-    "NAudio.Lame/2.1.0": {
-      "sha512": "Y+FtVgvjT+bNpBFqDiAKcFGelix1UavpX66vLymzWalXOGvY+MsoLNKL6aNGA0INjvBxeI3qd1LlD+bg7Nv2Ww==",
-      "type": "package",
-      "path": "naudio.lame/2.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.txt",
-        "build/NAudio.Lame.targets",
-        "build/libmp3lame.32.dll",
-        "build/libmp3lame.64.dll",
-        "lib/netstandard2.0/NAudio.Lame.dll",
-        "lib/netstandard2.0/NAudio.Lame.pdb",
-        "naudio.lame.2.1.0.nupkg.sha512",
-        "naudio.lame.nuspec"
-      ]
-    },
     "NAudio.Midi/2.2.1": {
       "sha512": "6r23ylGo5aeP02WFXsPquz0T0hFJWyh+7t++tz19tc3Kr38NHm+Z9j+FiAv+xkH8tZqXJqus9Q8p6u7bidIgbw==",
       "type": "package",
@@ -2833,9 +2832,9 @@
       "MQTTnet >= 5.1.0.1559",
       "ManagedBass >= 4.0.2",
       "ManagedBass.Flac >= 4.0.2",
+      "ManagedBass.Mix >= 4.0.2",
       "Microsoft.SemanticKernel >= 1.77.0",
       "Microsoft.SemanticKernel.Connectors.Ollama >= 1.66.0-alpha",
-      "NAudio.Lame >= 2.1.0",
       "System.Runtime.InteropServices.RuntimeInformation >= 4.3.0",
       "Vosk >= 0.3.38"
     ]
@@ -2907,6 +2906,10 @@
             "target": "Package",
             "version": "[4.0.2, )"
           },
+          "ManagedBass.Mix": {
+            "target": "Package",
+            "version": "[4.0.2, )"
+          },
           "Microsoft.SemanticKernel": {
             "target": "Package",
             "version": "[1.77.0, )"
@@ -2914,10 +2917,6 @@
           "Microsoft.SemanticKernel.Connectors.Ollama": {
             "target": "Package",
             "version": "[1.66.0-alpha, )"
-          },
-          "NAudio.Lame": {
-            "target": "Package",
-            "version": "[2.1.0, )"
           },
           "System.Runtime.InteropServices.RuntimeInformation": {
             "target": "Package",

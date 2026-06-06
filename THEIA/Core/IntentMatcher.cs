@@ -11,8 +11,6 @@ class IntentMatcher
         //Системные команды
         ["открой браузер"] = "open_browser",
         ["загугли"] = "open_browser",
-        ["открой яндекс"] = "open_browser",
-        ["открой гугл"] = "open_browser",
         ["выключи комп"] = "shutdown",
 
         //Информационные команды

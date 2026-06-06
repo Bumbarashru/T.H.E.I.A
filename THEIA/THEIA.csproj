@@ -13,7 +13,7 @@
     <PackageReference Include="KokoroSharp.CPU" Version="0.6.7" />
     <PackageReference Include="ManagedBass" Version="4.0.2" />
     <PackageReference Include="ManagedBass.Flac" Version="4.0.2" />
-    <PackageReference Include="ManagedBass.Mp3" Version="4.0.2" />
+    <PackageReference Include="ManagedBass.Mix" Version="4.0.2" />
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.77.0" />
     <PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.66.0-alpha" />
     <PackageReference Include="MQTTnet" Version="5.1.0.1559" />

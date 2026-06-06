@@ -1,0 +1,158 @@
+# =====================
+# .NET / C# специфичные
+# =====================
+
+# Результаты сборки
+/bin/
+/obj/
+/out/
+/publish/
+
+# Пользовательские файлы
+*.user
+*.userosscache
+*.suo
+*.userprefs
+
+# Файлы логов
+*.log
+*.logs
+*.logmanifest
+
+# Файлы отладки
+*.pidb
+*.pdb
+*.mdb
+*.heapsnapshot
+*.vshost.exe
+*.vshost.exe.manifest
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+*.DotSettings.user
+
+# Visual Studio
+.vs/
+*.vsix
+*.csproj.user
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+*.temp
+*.cache
+*.ncrunchsolution
+*.ncrunchproject
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# =====================
+# Медиафайлы (большие бинарники)
+# =====================
+
+# Аудио-записи (временные)
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.m4a
+
+# Модели для распознавания (обычно большие)
+Models/*/
+!Models/.gitkeep
+Data/Models/*/
+!Data/Models/.gitkeep
+
+# =====================
+# Зависимости и кэш
+# =====================
+
+# NuGet
+/packages/
+*.nupkg
+*.nuget.props
+*.nuget.targets
+nuget.config
+
+# Ollama (локальный кэш моделей)
+/ollama_models/
+~/.ollama/
+
+# =====================
+# Конфигурация с секретами
+# =====================
+
+# Никогда не коммитим файлы с ключами!
+appsettings.Development.json
+appsettings.Production.json
+*.Development.json
+*.Production.json
+secrets.json
+*.key
+*.pem
+*.cert
+.env
+.env.*
+!.env.example
+
+# =====================
+# Логи работы ассистента
+# =====================
+
+Data/Logs/
+!Data/Logs/.gitkeep
+
+# =====================
+# Результаты тестов
+# =====================
+
+/TestResults/
+*.trx
+*.coverage
+*.coveragexml
+*.coveragejson
+
+# =====================
+# Временные файлы ОС
+# =====================
+
+# Windows
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+*.DS_Store
+
+# Linux/Mac
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+*.dll
+*.dylib
+*.so
+
+# =====================
+# Бэкапы и артефакты
+# =====================
+
+*.bak
+*.old
+*.orig
+*.temp
+*.tmp
+*~
+
+# Сжатые архивы проекта
+*.7z
+*.rar
+*.zip
+*.tar
+*.gz
+
+

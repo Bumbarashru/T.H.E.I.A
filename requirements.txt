@@ -1,0 +1,8 @@
+Vosk
+Microsoft.SemanticKernel
+Microsoft.SemanticKernel.Connectors.Ollama --version 1.66.0-alpha
+NAudio.Lame
+KokoroSharp.CPU
+Build5Nines.SharpVector
+MQTTnet
+

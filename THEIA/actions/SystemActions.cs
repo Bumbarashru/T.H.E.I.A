@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace THEIA;
 
@@ -20,7 +21,13 @@ public class SystemActions
         return $"Сегодня: {DateTime.Now:dddd}";
     }
 
-    
+    public static string WhoAmI()
+    {
+        return "Я Тейя, голосовой помошник сделанный разработчиков Bumbarash, могу сделать почти ВСЁ! Рада помочь в случае чего <3";
+    }
+
+
+
 
 
 

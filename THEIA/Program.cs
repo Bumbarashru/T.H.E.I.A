@@ -1,35 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using THEIA.Commands;
+using THEIA.Core;
 
-namespace THEIA.Core;
+namespace THEIA;
 
 class Program
 {
     static async Task Main(string[] args)
     {
-        var matcher = new IntentMatcher();
+        var brain = new Brain();
 
         Console.WriteLine("Проверка всех систем . . .  \n Все системы в норме, готова к работе!");
 
         while (true)
         {
-            var input = Console.ReadLine();
+            Console.Write("> ");
+            var request = Console.ReadLine();
 
-            if (string.IsNullOrEmpty(input)) continue;
-            if (input == "exit") break;
+            var action = await brain.ProcessCommandAsync(request);
 
-            var command = matcher.Match(input);
+            if (string.IsNullOrEmpty(action)) continue;
 
-            if (command != null)
-            {
-                Console.WriteLine("ЛОКАЛЬНАЯ КОМАНДА, ВЫПОЛНЯЮ . . .");
-
-            }
-            else
-            {
-                Console.WriteLine("Дайка подумаю . . . <Обращение к Ии>");
-            }
+            Console.WriteLine(action);
         }
     }
 }

@@ -1,28 +1,31 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using THEIA.Commands;
+
 
 namespace THEIA.Core;
 
+
 class IntentMatcher
 {
-    private readonly Dictionary<string, string> _command = new()
+    private readonly Dictionary<string, ActionCommand> _command = new()
     {
         //Системные команды
-        ["открой браузер"] = "open_browser",
-        ["загугли"] = "open_browser",
-        ["выключи комп"] = "shutdown",
+        ["открой браузер"] = ActionCommand.open_browser,
+        ["загугли"] = ActionCommand.open_browser,
+        ["выключи комп"] = ActionCommand.shutdown,
 
         //Информационные команды
-        ["сколько время"] = "get_time",
-        ["время"] = "get_time",
-        ["день недели"] = "get_week",
-        ["кто ты"] = "who_are_you",
+        ["сколько время"] = ActionCommand.get_time,
+        ["время"] = ActionCommand.get_time,
+        ["день недели"] = ActionCommand.get_week,
+        ["кто ты"] = ActionCommand.WhoAmI,
 
         //EXIT
-        ["конец связи"] = "exit",
-        ["Пока"] = "exit",
-        ["выход"] = "exit"
+        ["конец связи"] = ActionCommand.exit,
+        ["пока"] = ActionCommand.exit,
+        ["выход"] = ActionCommand.exit
     };
 
     private readonly Dictionary<string,string> _synonyms = new()
@@ -32,7 +35,7 @@ class IntentMatcher
         ["инет"] = "браузер"
     };
 
-    public string? Match(string userInput)
+    public ActionCommand? Match(string userInput)
     {
         var normalized = NormalizeText(userInput);
         foreach(var command in _command)

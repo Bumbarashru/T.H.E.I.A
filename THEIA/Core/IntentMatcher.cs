@@ -16,7 +16,7 @@ class IntentMatcher
         //Информационные команды
         ["сколько время"] = "get_time",
         ["время"] = "get_time",
-        ["дата"] = "get_date",
+        ["день недели"] = "get_week",
         ["кто ты"] = "who_are_you",
 
         //EXIT

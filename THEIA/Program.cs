@@ -24,6 +24,7 @@ class Program
             if (command != null)
             {
                 Console.WriteLine("ЛОКАЛЬНАЯ КОМАНДА, ВЫПОЛНЯЮ . . .");
+
             }
             else
             {

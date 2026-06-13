@@ -12,11 +12,11 @@ class Program
     {
         var brain = new Brain();
 
-        Console.WriteLine("Проверка всех систем . . .  \n Все системы в норме, готова к работе!");
+        Console.WriteLine("Проверка всех систем . . .  \nВсе системы в норме, готова к работе!");
 
         while (true)
         {
-            Console.Write("> ");
+            Console.Write("THEIA > ");
             var request = Console.ReadLine();
 
             var action = await brain.ProcessCommandAsync(request);

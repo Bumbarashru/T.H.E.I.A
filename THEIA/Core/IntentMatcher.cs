@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using THEIA.Commands;
 
-
 namespace THEIA.Core;
-
 
 class IntentMatcher
 {
@@ -28,45 +27,120 @@ class IntentMatcher
         ["выход"] = ActionCommand.exit
     };
 
-    private readonly Dictionary<string,string> _synonyms = new()
+    private readonly Dictionary<string, string> _synonyms = new()
     {
         ["гугл"] = "браузер",
         ["интернет"] = "браузер",
-        ["инет"] = "браузер"
+        ["инет"] = "браузер",
+        ["компьютер"] = "комп",
+        ["пк"] = "комп"
     };
+
+    // Кэш N-грамм для команд (чтобы не пересчитывать при каждом запросе)
+    private readonly Dictionary<string, HashSet<string>> _commandNgramsCache;
+    
+    // Настройки N-грамм
+    private readonly int _ngramSize = 3;           // Размер N-граммы (3 = триграммы)
+    private readonly double _threshold = 0.6;     // Порог срабатывания (75% N-грамм команды должно совпасть)
+
+    public IntentMatcher()
+    {
+        // Предварительно вычисляем N-граммы для всех команд при старте
+        _commandNgramsCache = new Dictionary<string, HashSet<string>>();
+        foreach (var commandKey in _command.Keys)
+        {
+            _commandNgramsCache[commandKey] = GenerateNgrams(commandKey);
+        }
+    }
 
     public ActionCommand? Match(string userInput)
     {
-        var normalized = NormalizeText(userInput);
-        foreach(var command in _command)
-        {
-            if(normalized.Contains(command.Key)) return command.Value;
-        }
+        if (string.IsNullOrWhiteSpace(userInput)) return null;
 
-        foreach (var synonym in _synonyms)
+        // 1. Нормализация и замена синонимов
+        var normalized = NormalizeText(userInput);
+        normalized = ReplaceSynonyms(normalized);
+
+        // 2. Генерация N-грамм из фразы пользователя
+        var inputNgrams = GenerateNgrams(normalized);
+
+        // 3. Поиск команды с максимальным покрытием
+        ActionCommand? bestMatch = null;
+        string? bestMatchName = null;
+        double bestScore = 0;
+
+        foreach (var kvp in _commandNgramsCache)
         {
-            if (normalized.Contains(synonym.Key))
+            double score = CalculateCoverage(inputNgrams, kvp.Value);
+
+            if (score > bestScore)
             {
-                foreach(var command in _command)
-                {
-                    if(command.Key.Contains(synonym.Value)) return command.Value;
-                }
+                bestScore = score;
+                bestMatch = _command[kvp.Key];
+                bestMatchName = kvp.Key;
             }
         }
 
+        // 4. Проверка порога
+        if (bestScore >= _threshold && bestMatch != null)
+        {
+            Console.WriteLine($"[IntentMatcher] Распознано: '{bestMatchName}' (Покрытие: {bestScore:P0})");
+            return bestMatch;
+        }
 
+        Console.WriteLine($"[IntentMatcher] Команда не распознана. Лучшее совпадение: '{bestMatchName}' ({bestScore:P0})");
         return null;
     }
 
+    /// Замена синонимов в тексте перед поиском
+    private string ReplaceSynonyms(string text)
+    {
+        foreach (var synonym in _synonyms)
+        {
+            // Заменяем целые слова (чтобы "инет" не заменилось внутри "планета")
+            text = Regex.Replace(text, $@"\b{Regex.Escape(synonym.Key)}\b", synonym.Value);
+        }
+        return text;
+    }
+
+    /// Покрытие: какой процент N-грамм команды нашёлся во фразе пользователя.
+    /// Это идеально для голосового ввода, где фраза длиннее команды.
+    private double CalculateCoverage(HashSet<string> inputNgrams, HashSet<string> commandNgrams)
+    {
+        if (commandNgrams.Count == 0) return 0;
+
+        int intersectionCount = inputNgrams.Intersect(commandNgrams).Count();
+        return (double)intersectionCount / commandNgrams.Count;
+    }
+
+    /// Генерация множества N-грамм из строки
+    /// 
+    private HashSet<string> GenerateNgrams(string text)
+    {
+        var ngrams = new HashSet<string>();
+
+        if (text.Length <= _ngramSize)
+        {
+            ngrams.Add(text);
+            return ngrams;
+        }
+
+        for (int i = 0; i <= text.Length - _ngramSize; i++)
+        {
+            ngrams.Add(text.Substring(i, _ngramSize));
+        }
+
+        return ngrams;
+    }
+
+
+    /// Улучшенная нормализация через Regex (чище, чем куча Replace)
+
     private string NormalizeText(string text)
     {
-        return text
-            .ToLower()
-            .Replace("?", "")
-            .Replace("!", "")
-            .Replace(".", "")
-            .Replace("  ", " ")
-            .Replace(",", "")
-            .Trim();
+        return Regex.Replace(text.ToLower(), @"[^\w\s]", "").Trim();
     }
 }
+
+
+/// АЛГОРИТМ N-граммирование был сгенерирован с помощью нейросети QWEN 3.7+

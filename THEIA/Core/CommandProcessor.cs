@@ -1,10 +1,17 @@
 using System;
 using THEIA.Commands;
+using THEIA.Services.Speech;
 
 namespace THEIA;
 
 public class CommandProcessor
 {
+    private readonly WakeWordDetector _detector;
+
+    public CommandProcessor(WakeWordDetector detector)
+    {
+        _detector = detector;
+    }
     public async Task<string> Execute (ActionCommand action, string? originalCommand = null)
     {
         switch (action)
@@ -21,6 +28,8 @@ public class CommandProcessor
             case ActionCommand.WhoAmI:
             return SystemActions.WhoAmI();
 
+            case ActionCommand.sleep:
+            return SystemActions.Sleep(_detector);
             //case "reques_ai":
             //return await AskAI(originalCommand ?? "Расскажи что-нибудь интересное");
 

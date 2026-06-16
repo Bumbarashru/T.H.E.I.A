@@ -62,9 +62,9 @@
 *.m4a
 
 # Модели для распознавания (обычно большие)
-Models/*/
+
 !Models/.gitkeep
-Data/Models/*/
+
 !Data/Models/.gitkeep
 
 # =====================

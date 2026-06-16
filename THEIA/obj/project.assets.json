@@ -1000,6 +1000,35 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Spectre.Console/0.57.0": {
+        "type": "package",
+        "dependencies": {
+          "Spectre.Console.Ansi": "0.57.0"
+        },
+        "compile": {
+          "lib/net10.0/Spectre.Console.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Spectre.Console.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Spectre.Console.Ansi/0.57.0": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Spectre.Console.Ansi.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Spectre.Console.Ansi.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.ClientModel/1.10.0": {
         "type": "package",
         "dependencies": {
@@ -2937,6 +2966,48 @@
         "runtime.native.system.nuspec"
       ]
     },
+    "Spectre.Console/0.57.0": {
+      "sha512": "X5+4ZsUYTPlTs5PEoKRlxUuKOa1AkEoAGM34pUeJPjsBdtOnvnaVb31hqewhooomihl1i9fEBid1fz8XxZTacQ==",
+      "type": "package",
+      "path": "spectre.console/0.57.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net10.0/Spectre.Console.dll",
+        "lib/net10.0/Spectre.Console.xml",
+        "lib/net8.0/Spectre.Console.dll",
+        "lib/net8.0/Spectre.Console.xml",
+        "lib/net9.0/Spectre.Console.dll",
+        "lib/net9.0/Spectre.Console.xml",
+        "lib/netstandard2.0/Spectre.Console.dll",
+        "lib/netstandard2.0/Spectre.Console.xml",
+        "logo.png",
+        "spectre.console.0.57.0.nupkg.sha512",
+        "spectre.console.nuspec"
+      ]
+    },
+    "Spectre.Console.Ansi/0.57.0": {
+      "sha512": "DGeYljyWAIHSeUAoUGqyzyOqS8WlsHKW+y4zOZ0OO61oqrhx90jHS+XG5Kpq/wWz6ovIs2VL/0CTKpUVa7tdWg==",
+      "type": "package",
+      "path": "spectre.console.ansi/0.57.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net10.0/Spectre.Console.Ansi.dll",
+        "lib/net10.0/Spectre.Console.Ansi.xml",
+        "lib/net8.0/Spectre.Console.Ansi.dll",
+        "lib/net8.0/Spectre.Console.Ansi.xml",
+        "lib/net9.0/Spectre.Console.Ansi.dll",
+        "lib/net9.0/Spectre.Console.Ansi.xml",
+        "lib/netstandard2.0/Spectre.Console.Ansi.dll",
+        "lib/netstandard2.0/Spectre.Console.Ansi.xml",
+        "logo.png",
+        "spectre.console.ansi.0.57.0.nupkg.sha512",
+        "spectre.console.ansi.nuspec"
+      ]
+    },
     "System.ClientModel/1.10.0": {
       "sha512": "lBEWs54F5Y5pZ9hC+8z4S/X76957ex+DPk7WecRHlbIHtrPfbRMMlOgI3iDn4Jpb3bSxvBnKaaHoD59auFjlBA==",
       "type": "package",
@@ -3070,6 +3141,7 @@
       "ManagedBass.Mix >= 4.0.2",
       "Microsoft.SemanticKernel >= 1.77.0",
       "Microsoft.SemanticKernel.Connectors.Ollama >= 1.66.0-alpha",
+      "Spectre.Console >= 0.57.0",
       "System.Runtime.InteropServices.RuntimeInformation >= 4.3.0",
       "org.k2fsa.sherpa.onnx >= 1.13.2",
       "org.k2fsa.sherpa.onnx.runtime.linux-x64 >= 1.13.2"
@@ -3153,6 +3225,10 @@
           "Microsoft.SemanticKernel.Connectors.Ollama": {
             "target": "Package",
             "version": "[1.66.0-alpha, )"
+          },
+          "Spectre.Console": {
+            "target": "Package",
+            "version": "[0.57.0, )"
           },
           "System.Runtime.InteropServices.RuntimeInformation": {
             "target": "Package",

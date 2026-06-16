@@ -25,7 +25,12 @@ class IntentMatcher
         //EXIT
         ["конец связи"] = ActionCommand.exit,
         ["пока"] = ActionCommand.exit,
-        ["выход"] = ActionCommand.exit
+        ["выход"] = ActionCommand.sleep,
+        ["погоди"] = ActionCommand.sleep,
+        ["до скорого"] = ActionCommand.sleep,
+        ["стой"] = ActionCommand.sleep,
+        ["стоп"] = ActionCommand.sleep
+
     };
 
     private readonly Dictionary<string, string> _synonyms = new()

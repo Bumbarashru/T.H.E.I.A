@@ -11,6 +11,8 @@ public enum ActionCommand{
     restart,
     lockscreen,
     exit,
+    sleep,
+    
 
     //INFO COMMANDS
     get_time,

@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using THEIA.Services.Speech;
 
 namespace THEIA;
 
@@ -19,6 +20,11 @@ public class SystemActions
     public static string GetDayOfWeek()
     {
         return $"Сегодня: {DateTime.Now:dddd}";
+    }
+    public static string Sleep(WakeWordDetector _detector)
+    {
+        _detector.Sleep();
+        return "Если понадоблюсь, только скажи!";
     }
 
     public static string WhoAmI()

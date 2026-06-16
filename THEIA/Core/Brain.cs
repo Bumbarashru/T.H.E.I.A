@@ -1,6 +1,8 @@
 using System;
+using System.Threading.Tasks;
 using THEIA.Commands;
 using THEIA.Core;
+using THEIA.Services.Speech;
 
 namespace THEIA;
 
@@ -9,10 +11,10 @@ public class Brain
     private readonly IntentMatcher _matcher;
     private readonly CommandProcessor _processor;
     
-    public Brain()
+    public Brain(WakeWordDetector detector)
     {
         _matcher = new IntentMatcher();
-        _processor = new CommandProcessor();
+        _processor = new CommandProcessor(detector);
     }
 
     public async Task<string?> ProcessCommandAsync(string originalCommand)

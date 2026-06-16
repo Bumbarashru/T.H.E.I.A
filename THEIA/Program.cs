@@ -10,13 +10,12 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        var brain = new Brain();
 
         Console.WriteLine("Проверка всех систем . . .");
-        Console.WriteLine("All Right");
 
         // Инициализируем детектор, указывая путь к русской ASR модели
         var detector = new WakeWordDetector("Data/Models/asr-ru");
+        var brain = new Brain(detector);
 
         detector.WakeWordDetected += () =>
         {
@@ -40,6 +39,7 @@ class Program
         };
 
         Console.WriteLine("=== ТЕИА запускается ===");
+        Console.WriteLine("Все системы в норме");
         Console.WriteLine("Скажи 'тея' чтобы разбудить...");
         Console.WriteLine("Нажми Ctrl+C для выхода\n");
         

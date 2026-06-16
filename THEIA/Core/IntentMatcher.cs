@@ -20,6 +20,7 @@ class IntentMatcher
         ["время"] = ActionCommand.get_time,
         ["день недели"] = ActionCommand.get_week,
         ["кто ты"] = ActionCommand.WhoAmI,
+        ["ты кто"] = ActionCommand.WhoAmI,
 
         //EXIT
         ["конец связи"] = ActionCommand.exit,
@@ -32,6 +33,7 @@ class IntentMatcher
         ["гугл"] = "браузер",
         ["интернет"] = "браузер",
         ["инет"] = "браузер",
+
         ["компьютер"] = "комп",
         ["пк"] = "комп"
     };
@@ -41,7 +43,7 @@ class IntentMatcher
     
     // Настройки N-грамм
     private readonly int _ngramSize = 3;           // Размер N-граммы (3 = триграммы)
-    private readonly double _threshold = 0.6;     // Порог срабатывания (75% N-грамм команды должно совпасть)
+    private readonly double _threshold = 0.6;     // Порог срабатывания (60% N-грамм команды должно совпасть)
 
     public IntentMatcher()
     {

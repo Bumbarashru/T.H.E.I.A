@@ -84,9 +84,13 @@
               "target": "Package",
               "version": "[4.3.0, )"
             },
-            "Vosk": {
+            "org.k2fsa.sherpa.onnx": {
               "target": "Package",
-              "version": "[0.3.38, )"
+              "version": "[1.13.2, )"
+            },
+            "org.k2fsa.sherpa.onnx.runtime.linux-x64": {
+              "target": "Package",
+              "version": "[1.13.2, )"
             }
           },
           "imports": [

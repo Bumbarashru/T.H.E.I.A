@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using THEIA.Commands;
 using THEIA.Core;
+using THEIA.Services.Speech;
 
 namespace THEIA;
 
@@ -12,18 +13,57 @@ class Program
     {
         var brain = new Brain();
 
-        Console.WriteLine("Проверка всех систем . . .  \nВсе системы в норме, готова к работе!");
+        Console.WriteLine("Проверка всех систем . . .  ");
+        Console.WriteLine("All Right");
 
-        while (true)
+        var detector = new WakeWordDetector(
+            keywordsFile: "Data/Models/kws/keywords.txt",
+            kwsModelPath: "Data/Models/kws",
+            asrModelPath: "Data/Models/asr-ru"
+        );
+
+        detector.WakeWordDetected += () =>
         {
-            Console.Write("THEIA > ");
-            var request = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Да, да ... ?");
+            Console.ResetColor();
+        };
 
-            var action = await brain.ProcessCommandAsync(request);
+        detector.CommandRecognized +=  async (commandText) =>
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"👂 Вы услышали: \"{commandText}\"");
+            Console.ResetColor();
+            
+            // Передаём команду в мозг
+            var response = await brain.ProcessCommandAsync(commandText);
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"🧠 ТЕИА: {response}");
+            Console.ResetColor();
+        };
+        
 
-            if (string.IsNullOrEmpty(action)) continue;
-
-            Console.WriteLine(action);
-        }
+        Console.WriteLine("=== ТЕИА запускается ===");
+        Console.WriteLine("Скажи 'тея' чтобы разбудить...");
+        Console.WriteLine("Нажми Ctrl+C для выхода\n");
+        
+        detector.Start();
+        
+        // 6. Ждём нажатия Ctrl+C
+        var exitEvent = new ManualResetEventSlim(false);
+        Console.CancelKeyPress += (sender, e) =>
+        {
+            e.Cancel = true;
+            exitEvent.Set();
+        };
+        
+        exitEvent.Wait();
+        
+        // 7. Корректное завершение
+        Console.WriteLine("\nОстанавливаем ТЕИА...");
+        detector.Stop();
+        detector.Dispose();
+        Console.WriteLine("До свидания!");
     }
 }

@@ -17,8 +17,9 @@
     <PackageReference Include="Microsoft.SemanticKernel" Version="1.77.0" />
     <PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.66.0-alpha" />
     <PackageReference Include="MQTTnet" Version="5.1.0.1559" />
+    <PackageReference Include="org.k2fsa.sherpa.onnx" Version="1.13.2" />
+    <PackageReference Include="org.k2fsa.sherpa.onnx.runtime.linux-x64" Version="1.13.2" />
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
-    <PackageReference Include="Vosk" Version="0.3.38" />
   </ItemGroup>
 
 </Project>

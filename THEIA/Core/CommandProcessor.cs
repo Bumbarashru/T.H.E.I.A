@@ -18,6 +18,9 @@ public class CommandProcessor
             case ActionCommand.get_week:
             return SystemActions.GetDayOfWeek();
 
+            case ActionCommand.WhoAmI:
+            return SystemActions.WhoAmI();
+
             //case "reques_ai":
             //return await AskAI(originalCommand ?? "Расскажи что-нибудь интересное");
 

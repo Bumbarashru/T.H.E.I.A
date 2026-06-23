@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using THEIA.Commands;
+using THEIA.Ui.UiManager;
 
 namespace THEIA.Core;
 
@@ -13,6 +14,7 @@ class IntentMatcher
         //Системные команды
         ["открой браузер"] = ActionCommand.open_browser,
         ["загугли"] = ActionCommand.open_browser,
+        ["открой ютуб"] = ActionCommand.open_youtube,
         ["выключи комп"] = ActionCommand.shutdown,
 
         //Информационные команды
@@ -36,6 +38,7 @@ class IntentMatcher
     private readonly Dictionary<string, string> _synonyms = new()
     {
         ["гугл"] = "браузер",
+        ["ютюб"] = "ютуб",
         ["интернет"] = "браузер",
         ["инет"] = "браузер",
 
@@ -91,11 +94,12 @@ class IntentMatcher
         // 4. Проверка порога
         if (bestScore >= _threshold && bestMatch != null)
         {
-            Console.WriteLine($"[IntentMatcher] Распознано: '{bestMatchName}' (Покрытие: {bestScore:P0})");
+            UiManager.Print($"(Debugger) Распознано: '{bestMatchName}' (Покрытие: {bestScore:P0})", "grey",EmojiCategory.funny);
+            
             return bestMatch;
         }
 
-        Console.WriteLine($"[IntentMatcher] Команда не распознана. Лучшее совпадение: '{bestMatchName}' ({bestScore:P0})");
+        UiManager.Print($"(Debugger) Команда не распознана. Лучшее совпадение: '{bestMatchName}' ({bestScore:P0})", "grey");
         return null;
     }
 

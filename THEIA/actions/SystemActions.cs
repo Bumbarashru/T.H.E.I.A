@@ -9,7 +9,29 @@ public class SystemActions
     public static string OpenBrowser()
     {
         Console.WriteLine("DEBAGGING \t ОТКРЫВАЮ БРАУЗЕР . . .");
-        return "Сделано!";
+        try{
+            if(OperatingSystem.IsWindows()) Process.Start("firefox.exe");
+            else if (OperatingSystem.IsLinux()) Process.Start("xdg-open", "https://www.google.com");
+            return "Сделано!";
+        }
+        catch(Exception ex) {return $"Не удалось открыть браузер: {ex}";}
+    }
+    public static string OpenYoutube()
+    {
+        try
+        {
+            if(OperatingSystem.IsWindows()) Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://www.youtube.com/",
+                UseShellExecute = true
+            });
+            else if (OperatingSystem.IsLinux()) Process.Start("xdg-open", "https://www.youtube.com/");
+            return "открываю YouTube";
+        }
+        catch (Exception ex)
+        {
+            return $"Не удалось открыть ютуб: {ex}";
+        }
     }
 
     public static string GetTime()

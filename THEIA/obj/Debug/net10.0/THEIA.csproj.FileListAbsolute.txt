@@ -94,3 +94,5 @@
 /home/bumbarash/T.H.E.I.A/THEIA/obj/Debug/net10.0/THEIA.pdb
 /home/bumbarash/T.H.E.I.A/THEIA/obj/Debug/net10.0/THEIA.genruntimeconfig.cache
 /home/bumbarash/T.H.E.I.A/THEIA/obj/Debug/net10.0/ref/THEIA.dll
+/home/bumbarash/T.H.E.I.A/THEIA/bin/Debug/net10.0/Spectre.Console.dll
+/home/bumbarash/T.H.E.I.A/THEIA/bin/Debug/net10.0/Spectre.Console.Ansi.dll

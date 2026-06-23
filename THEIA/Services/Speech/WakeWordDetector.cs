@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using SherpaOnnx;
+using THEIA.Ui.UiManager;
 
 namespace THEIA.Services.Speech;
 
@@ -46,10 +47,14 @@ public class WakeWordDetector : IDisposable
         
         // Настройки окончания фразы (пауза)
         config.EnableEndpoint = 1;
-        config.Rule1MinTrailingSilence = 1.5f; // Тишина перед концом фразы
-        config.Rule2MinTrailingSilence = 0.7f; // Тишина после короткой фразы
+        config.Rule1MinTrailingSilence = 0.9f; // Тишина перед концом фразы
+        config.Rule2MinTrailingSilence = 0.8f; // Тишина после короткой фразы
         config.Rule3MinUtteranceLength = 15f;  // Минимальная длина фразы
+
+        config.HotwordsBuf = "тея:5.0 тэя:7.0";
+        config.HotwordsScore = 2.0f;
         
+
         _recognizer = new OnlineRecognizer(config);
         _stream = _recognizer.CreateStream();
     }
@@ -63,7 +68,7 @@ public class WakeWordDetector : IDisposable
             {
                 FileName = "arecord",
                 // -D plughw:0,0 гарантирует, что мы пишем с правильного микрофона
-                Arguments = $"-D plughw:0,0 -f S16_LE -r {SampleRate} -c 1 -t raw -q",
+                Arguments = $"-D pulse -f S16_LE -r {SampleRate} -c 1 -t raw -q",
                 RedirectStandardOutput = true,
                 UseShellExecute = false,
                 CreateNoWindow = true
@@ -75,7 +80,7 @@ public class WakeWordDetector : IDisposable
         _audioThread = new Thread(ProcessAudio);
         _audioThread.Start();
         
-        Console.WriteLine("💤 ТЕИА спит...");
+        UiManager.Print("Тейя спит ...", "yellow", EmojiCategory.sleep);
     }
     
     private void ProcessAudio()
@@ -124,18 +129,14 @@ public class WakeWordDetector : IDisposable
 
             if (!string.IsNullOrEmpty(currentText))
             {
+                //Console.WriteLine($"[DEBUG] Модель слышит: '{currentText}'");
                 if (!_isAwake)
                 {
                     // Режим сна: ищем слово пробуждения в текущем тексте
                     if (currentText.Contains("тея") || 
-                        currentText.Contains("ты я") || 
-                        currentText.Contains("т я") || 
-                        currentText.Contains("ты") ||
-                        currentText.Contains("тебя") ||
-                        currentText.Contains("эй") ||
+                        currentText.Contains("тэя") ||
                         currentText.Contains("алло") ||
-                        currentText.Contains("т")  )
-
+                        currentText.Contains("алиса")  )
                     {
                         OnWakeWord();
                     }
@@ -152,6 +153,7 @@ public class WakeWordDetector : IDisposable
                     // Отправляем в Brain только если текст не пустой
                     if (!string.IsNullOrEmpty(finalText))
                     {
+                       // Console.WriteLine(result.Text);
                         // Дополнительно фильтруем, чтобы само слово пробуждения не улетало как команда
                         if (!finalText.Equals("тея", StringComparison.OrdinalIgnoreCase) &&
                             !finalText.Equals("ты", StringComparison.OrdinalIgnoreCase))
@@ -193,15 +195,15 @@ public class WakeWordDetector : IDisposable
         {
             await Task.Delay(TimeSpan.FromSeconds(DialogTimeoutSeconds), _commandTimeout.Token);
             _isAwake = false;
-            Console.WriteLine("⏰ Таймаут. Засыпаю...");
+            UiManager.Print("Таймаут. Засыпаю ...", "yellow", EmojiCategory.sleep);
         }
         catch (TaskCanceledException) { }
     }
     public void Sleep()
     {
         _isAwake = false;
-        Console.WriteLine("До скорого! Засыпаю . . .");
-    }
+        UiManager.Print("До скорого, ухожу в гибернацию... ", "yellow", EmojiCategory.sleep);    
+        }
     
     public void Stop()
     {

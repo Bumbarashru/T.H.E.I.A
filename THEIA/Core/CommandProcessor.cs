@@ -30,8 +30,12 @@ public class CommandProcessor
 
             case ActionCommand.sleep:
             return SystemActions.Sleep(_detector);
-            //case "reques_ai":
-            //return await AskAI(originalCommand ?? "Расскажи что-нибудь интересное");
+            
+            case ActionCommand.open_youtube:
+            return SystemActions.OpenYoutube();
+
+
+
 
             default:
             return "Не могу распознать команду";

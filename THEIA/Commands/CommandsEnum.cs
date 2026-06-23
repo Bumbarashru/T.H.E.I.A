@@ -7,6 +7,7 @@ public enum ActionCommand{
 
     //SYSTEM COMMANDS
     open_browser,
+    open_youtube,
     shutdown,
     restart,
     lockscreen,

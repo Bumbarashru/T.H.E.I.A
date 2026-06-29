@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("THEIA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8acca55d18fa699b846dd59548e3615ca001b901")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5c15a14e6fbca9f56f094dfd7d61d6aa3e270f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("THEIA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("THEIA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

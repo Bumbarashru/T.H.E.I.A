@@ -16,6 +16,9 @@ public class SystemActions
         }
         catch(Exception ex) {return $"Не удалось открыть браузер: {ex}";}
     }
+
+
+
     public static string OpenYoutube()
     {
         try

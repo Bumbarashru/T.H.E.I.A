@@ -4,6 +4,7 @@ using THEIA.Commands;
 using THEIA.Core;
 using THEIA.Services.Speech;
 using THEIA.Services.AI;
+using THEIA.Services.Search;
 
 namespace THEIA;
 
@@ -12,12 +13,14 @@ public class Brain
     private readonly IntentMatcher _matcher;
     private readonly CommandProcessor _processor;
     private readonly AiHandler _aiHandler;
+    private readonly SearchGoogle _searchGoogle;
     
     public Brain(WakeWordDetector detector)
     {
         _matcher = new IntentMatcher();
         _processor = new CommandProcessor(detector);
         _aiHandler = new AiHandler();
+        _searchGoogle = new SearchGoogle();
     }
 
     public async Task<string?> ProcessCommandAsync(string originalCommand)
@@ -42,4 +45,7 @@ public class Brain
     {
         return _matcher.Match(originalCommand);
     }
+
+
+
 }

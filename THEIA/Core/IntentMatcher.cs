@@ -13,9 +13,9 @@ class IntentMatcher
     {
         //Системные команды
         ["открой браузер"] = ActionCommand.open_browser,
-        ["загугли"] = ActionCommand.open_browser,
         ["открой ютуб"] = ActionCommand.open_youtube,
         ["выключи комп"] = ActionCommand.shutdown,
+        ["найди"] = ActionCommand.search,
 
         //Информационные команды
         ["сколько время"] = ActionCommand.get_time,
@@ -41,6 +41,11 @@ class IntentMatcher
         ["ютюб"] = "ютуб",
         ["интернет"] = "браузер",
         ["инет"] = "браузер",
+
+        ["найти"] = "найди",
+        ["поищи"] = "найди",
+        ["загугли"] = "найди",
+        ["поищи"] = "найди",
 
         ["компьютер"] = "комп",
         ["пк"] = "комп"
